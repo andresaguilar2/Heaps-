@@ -101,3 +101,33 @@ extractMin() {
     console.log(this.heap.slice(0, this.size).map(task => `${task.name}(${task.priority})`));
   }
 }
+
+// Función de prueba
+function testTaskHeap() {
+  const taskHeap = new MinHeap(20);
+
+  const tasks = [
+    { name: "Tarea A", priority: 5 },
+    { name: "Tarea B", priority: 2 },
+    { name: "Tarea C", priority: 4 },
+    { name: "Tarea D", priority: 1 },
+    { name: "Tarea E", priority: 3 },
+  ];
+
+  console.log("\n--- Insertando tareas ---");
+  tasks.forEach(task => {
+    console.log(`Insertando: ${task.name} con prioridad ${task.priority}`);
+    taskHeap.insert(task);
+  });
+
+  console.log("\n--- Estado actual del heap ---");
+  taskHeap.printHeapPretty();
+
+  console.log("\n--- Tareas extraídas por orden de prioridad ---");
+  while (taskHeap.size > 0) {
+    const task = taskHeap.extractMin();
+    console.log(`→ ${task.name} (prioridad: ${task.priority})`);
+  }
+}
+
+testTaskHeap();
