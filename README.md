@@ -14,7 +14,7 @@ Asegúrate de tener Node.js instalado en tu equipo.
 
 Clona el repositorio:
 
-git clone https://github.com/<usuario>/<repositorio>.git
+git clone https://github.com/andresaguilar2/Heaps-.git
 cd <repositorio>
 Ejecuta el archivo heaps.js:
 node heaps.js
