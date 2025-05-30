@@ -45,4 +45,59 @@ class MinHeap {
     this.size++;
   }
 
-  
+extractMin() {
+    if (this.size <= 0) return null;
+
+    const popped = this.heap[0];
+    this.heap[0] = this.heap[this.size - 1];
+    this.size--;
+    this.minHeapify(0);
+    return popped;
+  }
+
+  minHeapify(i) {
+    if (!this.isLeaf(i)) {
+      const left = this.leftChildIndex(i);
+      const right = this.rightChildIndex(i);
+
+      let smallest = i;
+
+      if (
+        left < this.size &&
+        this.heap[left].priority < this.heap[smallest].priority
+      ) {
+        smallest = left;
+      }
+
+      if (
+        right < this.size &&
+        this.heap[right].priority < this.heap[smallest].priority
+      ) {
+        smallest = right;
+      }
+
+      if (smallest !== i) {
+        this.swap(i, smallest);
+        this.minHeapify(smallest);
+      }
+    }
+  }
+
+  printHeapPretty() {
+    for (let i = 0; i < Math.floor(this.size / 2); i++) {
+      const left = this.leftChildIndex(i);
+      const right = this.rightChildIndex(i);
+
+      let output = `Parent: ${this.heap[i].name}(${this.heap[i].priority})`;
+      if (left < this.size)
+        output += ` Left: ${this.heap[left].name}(${this.heap[left].priority})`;
+      if (right < this.size)
+        output += ` Right: ${this.heap[right].name}(${this.heap[right].priority})`;
+      console.log(output);
+    }
+  }
+
+  printHeap() {
+    console.log(this.heap.slice(0, this.size).map(task => `${task.name}(${task.priority})`));
+  }
+}
